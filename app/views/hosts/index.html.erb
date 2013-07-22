@@ -1,0 +1,14 @@
+<h1> Todos os hosts</h1>
+
+<ul id="hosts">
+  <% @hosts.each do |host| %>
+    <li>
+	<%= link_to host.hostName, host_path(host),
+
+    		class: 'host_hostName', id: "host_#{host.id}" %>
+    		
+    </li>
+  <% end %>
+  <%= link_to "Create a New host", new_host_path, class: "new_host" %>
+
+</ul>

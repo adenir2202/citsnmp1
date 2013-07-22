@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130719140101) do
+ActiveRecord::Schema.define(version: 20130722185810) do
 
   create_table "articles", force: true do |t|
     t.string   "title"
@@ -33,6 +33,35 @@ ActiveRecord::Schema.define(version: 20130719140101) do
   end
 
   add_index "comments", ["article_id"], name: "index_comments_on_article_id"
+
+  create_table "hosts", force: true do |t|
+    t.string   "hostName",       limit: 250, default: "localhost", null: false
+    t.string   "description",                default: "null"
+    t.string   "snmp_community", limit: 100, default: "null"
+    t.integer  "snmp_version",   limit: 2,   default: 1,           null: false
+    t.string   "snmp_userName",  limit: 50,  default: "null"
+    t.string   "snmp_password",  limit: 50,  default: "null"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "snmp_queries", force: true do |t|
+    t.string   "OID",         limit: 64,    default: "new hash", null: false
+    t.string   "name",        limit: 100,   default: "new_col",  null: false
+    t.string   "text",        limit: 32760, default: "x",        null: false
+    t.string   "xml",         limit: 32760, default: "<>",       null: false
+    t.string   "description",               default: "null"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "snmpsrvs", force: true do |t|
+    t.string   "OID"
+    t.text     "OID_name"
+    t.text     "descricao"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

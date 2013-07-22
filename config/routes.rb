@@ -1,5 +1,5 @@
 Blogger::Application.routes.draw do
-	root to: 'articles#index' 
+	root to: 'hosts#index' 
 	resources :articles
 
 	resources :articles do
@@ -7,4 +7,6 @@ Blogger::Application.routes.draw do
 	end
 
 	resources :tags		
+	
+	resources :hosts
 end

@@ -1,0 +1,11 @@
+<h3>Lista do hosts disponíveis</h3>
+<p><%= @host.hostName %></p>
+<p><%= @host.description %></p>
+<%= link_to "<< Back to hosts List", hosts_path %>
+
+<h3>Deletando o host</h3>
+<%= link_to "delete", host_path(@host), method: :delete %>
+
+<h3>Editando o host</h3>
+<%= link_to "edit", edit_host_path(@host) %>
+
