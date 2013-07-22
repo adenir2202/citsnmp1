@@ -22,13 +22,15 @@ class ArticlesController < ApplicationController
   		redirect_to article_path(@article)
 	end
 
-	def destroy
-  		@article = Article.find(params[:id])	
-  		@article = Article.destroy(params[:id])	
-		#@article.save
-		flash.notice = "O artigo [#{@article.title}] foi excluido!"
-  		redirect_to article_path(@article.find(0))
-	end
+  def destroy
+    @article = Article.find(params[:id])
+
+    @article.destroy
+    flash.notice = "O artigo [#{@article.title}] foi excluido!"
+
+    redirect_to articles_path
+  end
+
 
   	def article_params
     		params.require(:article).permit(:title, :body, :tag_list)
