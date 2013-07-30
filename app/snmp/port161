@@ -1,2 +1,0 @@
-iptables -A INPUT -p udp --dport 161 -j ACCEPT
-iptables -A FORWARD -p udp --dport 161 -j ACCEPT

@@ -1,7 +1,0 @@
-require "snmp4em/extensions/snmp/integer.rb"
-require "snmp4em/extensions/snmp/ip_address.rb"
-require "snmp4em/extensions/snmp/null.rb"
-require "snmp4em/extensions/snmp/object_id.rb"
-require "snmp4em/extensions/snmp/octet_string.rb"
-require "snmp4em/extensions/snmp/response_error.rb"
-require "snmp4em/extensions/snmp/no_such_instance.rb"
