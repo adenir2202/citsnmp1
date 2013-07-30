@@ -1,0 +1,9 @@
+doc
+web/site
+pkg
+*.ipr
+*.iml
+*.iws
+.rakeTasks
+Gemfile
+Gemfile.lock

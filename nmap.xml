@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="file:///usr/bin/../share/nmap/nmap.xsl" type="text/xsl"?>
+<!-- Nmap 6.25 scan initiated Fri Jul 26 11:39:35 2013 as: nmap -sn -PR -oX nmap.xml 10.2.1.1/24 -->
+<nmaprun scanner="nmap" args="nmap -sn -PR -oX nmap.xml 10.2.1.1/24" start="1374849575" startstr="Fri Jul 26 11:39:35 2013" version="6.25" xmloutputversion="1.04">
+<verbose level="0"/>
+<debugging level="0"/>
+<runstats><finished time="1374849575" timestr="Fri Jul 26 11:39:35 2013" elapsed="0.00" summary="Nmap done at Fri Jul 26 11:39:35 2013; 256 IP addresses (0 hosts up) scanned in 0.00 seconds" exit="success"/><hosts up="0" down="256" total="256"/>
+</runstats>
+</nmaprun>

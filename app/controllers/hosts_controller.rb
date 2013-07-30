@@ -1,3 +1,5 @@
+require 'snmp'
+
 class HostsController < ApplicationController
   def index
   		@hosts = Host.all
@@ -13,33 +15,37 @@ class HostsController < ApplicationController
   
   def create
   	@host = Host.new(host_params)	
+  	
+  	@host.hostName = "adenir.centralit"
   	@host.save
-  	flash.notice = "O Host [#{@host.hostName}] foi criado!"
+  	flash.notice = "O Host [#{@host.hostName} #{@host.description} #{@host.snmp_userName}] foi criado!"
   	redirect_to host_path(@host)
   end
   
   def destroy
-  		@host = Host.find(params[:id])	
-  		@host = Host.destroy(params[:id])	
-  	#@host.save
-  flash.notice = "O Host [#{@host.hostName}] foi excluido!"
-    		redirect_to host_path(@host.find(0))
-  end
-  
-  def destroy
     @host = Host.find(params[:id])
-  
+
     @host.destroy
-  
+    flash.notice = "O host [#{@host.hostName}] foi excluido!"
+
     redirect_to hosts_path
   end
-  
+
   def host_params
-  		params.require(:host).permit(:hostName, :body, :tag_list)
+  		params.require(:host).permit(:hostName, :description, :snmp_community, :snmp_version, :snmp_userName, :snmp_password)    
+
   end
     
   def edit
   	@host = Host.find(params[:id])
+    SNMP::Manager.open(:host => 'localhost') do |manager|
+        response = manager.get(["sysDescr.0", "sysName.0"])
+        response.each_varbind do |vb|
+            @host.hostName = vb.name.to_s
+            @host.description = vb.value.to_s
+            @host.snmp_userName = vb.value.asn1_type
+        end
+    end
   end
   
   def update
@@ -51,4 +57,24 @@ class HostsController < ApplicationController
   	redirect_to host_path(@host)
   end
 
+  def listAllHost
+    #arp-scan --interface=eth0 192.168.0.0/24
+    #!/bin/bash
+    #for ip in 192.168.0.{1..254}; do
+      #  ping -c 1 -W 1 $ip | grep "64 bytes" &
+    #done
+    
+    @host = Host.new
+    SNMP::Manager.open(:host => 'localhost') do |manager|
+        response = manager.get(["sysDescr.0", "sysName.0"])
+        response.each_varbind do |vb|
+            @host.hostName = vb.name.to_s
+            @host.description = vb.value.to_s
+            @host.snmp_userName = vb.value.asn1_type
+            flash.notice = "O Host [#{@host.hostName} #{@host.description} #{@host.snmp_userName}] foi criado!"
+        end
+    end
+    
+    render :action => "new"
+   end 
 end

@@ -54,3 +54,7 @@ gem 'devise', '3.0.0.rc'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 gem "paperclip"
+
+# use snmp for inquire on network
+# gem 'snmp'
+gem "snmp"

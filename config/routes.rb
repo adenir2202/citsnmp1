@@ -8,5 +8,6 @@ Blogger::Application.routes.draw do
 
 	resources :tags		
 	
-	resources :hosts
+	resources :hosts 
+	match '/listAll',  to: 'hosts#listAllHost',            via: 'get'
 end

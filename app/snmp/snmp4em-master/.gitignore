@@ -1,0 +1,7 @@
+pkg
+doc
+Gemfile.lock
+.rvmrc
+.yardoc
+
+snmp4em-*.gem
